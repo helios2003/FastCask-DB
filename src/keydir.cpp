@@ -48,7 +48,8 @@ void KeyDir::set_command(const string &key, const string &value, float expiry)
         file_id,
         offset};
 
-    // write the value into the current file
+    // write the value into the hint file and current file
+    logger.put_log(key, metadata);
     *current_file << value;
     current_file->flush();
     directory[key] = metadata;
@@ -87,4 +88,9 @@ void KeyDir::list_command() const
     {
         cout << it.first << '\n';
     }
+}
+
+MetaData &KeyDir::operator[](const string &key)
+{
+    return directory[key];
 }

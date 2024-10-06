@@ -10,7 +10,7 @@ using namespace std;
 
 tuple<string, string, string, float> parse_user_info(const string &user_input)
 {
-    const unordered_set<string> commands_list = {"GET", "SET", "DELETE", "LIST"};
+    const unordered_set<string> commands_list = {"GET", "SET", "DELETE", "LIST", "SYNC"};
     string command, key, value, given_expiry;
     float expiry;
     istringstream ss(user_input);
@@ -31,10 +31,7 @@ tuple<string, string, string, float> parse_user_info(const string &user_input)
         {
             return make_tuple(command, key, "", expiry);
         }
-        else
-        {
-            cerr << "GET command only requires a key" << endl;
-        }
+        cerr << "GET command only requires a key" << endl;
     }
     else if (command == "SET")
     {
@@ -53,10 +50,7 @@ tuple<string, string, string, float> parse_user_info(const string &user_input)
             }
             return make_tuple(command, key, value, expiry);
         }
-        else
-        {
-            cerr << "SET command requires a key and value" << endl;
-        }
+        cerr << "SET command requires a key and value" << endl;
     }
     else if (command == "DELETE")
     {
@@ -64,10 +58,7 @@ tuple<string, string, string, float> parse_user_info(const string &user_input)
         {
             return make_tuple(command, key, "", expiry);
         }
-        else
-        {
-            cerr << "DELETE command requires a key" << endl;
-        }
+        cerr << "DELETE command requires a key" << endl;
     }
     else if (command == "LIST")
     {
@@ -75,10 +66,15 @@ tuple<string, string, string, float> parse_user_info(const string &user_input)
         {
             return make_tuple(command, "", "", expiry);
         }
-        else
+        cerr << "LIST command does not need any arguments" << endl;
+    }
+    else if (command == "SYNC")
+    {
+        if (!(ss >> key) && !(ss >> value))
         {
-            cerr << "LIST command does not need any arguments" << endl;
+            return make_tuple(command, "", "", expiry);
         }
+        cerr << "SYNC command does not need any arguments" << endl;
     }
     return make_tuple("", "", "", expiry); 
 }
