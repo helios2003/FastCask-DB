@@ -1,6 +1,5 @@
 *.exe
 *.out
 .vscode
-Makefile
 user_files/
 sync/

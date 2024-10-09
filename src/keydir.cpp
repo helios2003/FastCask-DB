@@ -18,6 +18,7 @@ void KeyDir::set_command(const string &key, const string &value, float expiry)
 {
     /* if there is no file or the current file can no longer
     be the active file then only run this subroutine */
+    lock_guard<mutex> lock(mtx);
     if (current_file == nullptr || current_file->tellp() > MAX_FILE_SIZE)
     {
         if (current_file != nullptr)
@@ -80,6 +81,17 @@ string KeyDir::get_command(const string &key) const
         return value;
     }
     return "";
+}
+
+void KeyDir::delete_command(const string& key) 
+{
+    lock_guard<mutex> lock(mtx);
+    if (directory.find(key) == directory.end())
+    {
+        cerr << "Key " << key << " is not found" << endl;
+        return;
+    }
+    directory.erase(key);
 }
 
 void KeyDir::list_command() const

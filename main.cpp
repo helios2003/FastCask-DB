@@ -56,6 +56,10 @@ int main(void)
                 cout << value << '\n';
             }
         }
+        else if (command == "DELETE")
+        {
+            keydir.delete_command(key);
+        }
         else if (command == "LIST")
         {
             keydir.list_command();
