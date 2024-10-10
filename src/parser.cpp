@@ -4,7 +4,7 @@
 #include <sstream>
 #include <unordered_set>
 #include <stdexcept>
-#include "../headers/parser.hpp"
+#include "parser.hpp"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ tuple<string, string, string, float> parse_user_info(const string &user_input)
 {
     const unordered_set<string> commands_list = {"GET", "SET", "DELETE", "LIST", "SYNC"};
     string command, key, value, given_expiry;
-    float expiry;
+    float expiry = 10000000;
     istringstream ss(user_input);
     tuple<string, string, string, float> parsed_facts;
 

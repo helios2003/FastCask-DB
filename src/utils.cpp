@@ -3,7 +3,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
-#include "../headers/utils.hpp"
+#include "utils.hpp"
 
 using namespace std;
 

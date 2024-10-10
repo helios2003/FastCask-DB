@@ -2,16 +2,16 @@
 #include <fstream>
 #include <vector>
 #include <filesystem>
-#include "../headers/json.hpp"
-#include "../headers/logger.hpp"
+#include "json.hpp"
+#include "logger.hpp"
 
 using namespace std;
 using json = nlohmann::json;
 
 Logger::Logger()
 {
-    filesystem::create_directories("sync");
-    string file_path = "sync/" + string("wal") + ".json";
+    filesystem::create_directories("user_files");
+    string file_path = "user_files/" + string("wal") + ".json";
     log_file.open(file_path, ios::app);
     fstream log_file(file_path, ios::app);
 

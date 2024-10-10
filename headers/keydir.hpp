@@ -17,9 +17,9 @@ private:
     Logger logger;
     mutable mutex mtx;
 public:
-    void set_command(const string &key, const string &value, float expiry = 1e9);
-    void list_command() const;
-    string get_command(const string &key) const;
+    void set_command(const string &key, const string &value, float expiry = 10000000);
+    void list_command();
+    string get_command(const string &key);
     void delete_command(const string& key);
     MetaData& operator[](const string& key);
 };
