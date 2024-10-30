@@ -46,7 +46,6 @@ void KeyDir::set_command(const string &key, const string &value, float expiry)
 
     if (expiry != 10000000)
     {
-        cout << "expiry is " << expiry;
         expiry_time = chrono::system_clock::now() + chrono::seconds(static_cast<int>(expiry));
     }
 
@@ -62,6 +61,8 @@ void KeyDir::set_command(const string &key, const string &value, float expiry)
     *current_file << value;
     current_file->flush();
     directory[key] = metadata;
+    
+    cout << "OK" << '\n';
 }
 
 string KeyDir::get_command(const string &key)
