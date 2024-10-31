@@ -17,5 +17,3 @@ set(SRCS
 )
 
 add_executable(fastcask.out ${SRCS})
-
-set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "fastcask.out")

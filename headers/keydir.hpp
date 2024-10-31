@@ -11,12 +11,12 @@ using namespace std;
 class KeyDir
 {
 private:
-    unordered_map<string, MetaData> directory;
     fstream *current_file = nullptr;
     string file_id;
     Logger logger;
     mutable mutex mtx;
 public:
+    unordered_map<string, MetaData> directory;
     void set_command(const string &key, const string &value, float expiry = 10000000);
     void list_command();
     string get_command(const string &key);
